@@ -1,0 +1,2 @@
+# blog
+first shit proj
