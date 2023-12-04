@@ -9,7 +9,7 @@
     </p>
     {{ post.body|linebreaks }}
     <p>
-        <a href="{% url 'blog:post_share' post.slug %}">
+        <a href="{% url 'blog:post_share' post.publish.year post.publish.month post.publish.day post.slug %}">
             Share this post
         </a>
     </p>
