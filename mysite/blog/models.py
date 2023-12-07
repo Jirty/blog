@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
 
 
 class PublishedManager(models.Manager):
@@ -12,6 +13,7 @@ class PublishedManager(models.Manager):
 
 
 class Post(models.Model):
+    tags = TaggableManager()
     # Основні поля поста
     class Status(models.TextChoices):
         DRAFT = 'DF', 'Draft'
@@ -19,7 +21,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,
-                            unique_for_date='publish', primary_key=True)
+                            unique_for_date='publish', primary_key=False)
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name='blog_posts')
